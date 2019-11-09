@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="vuejs/form.js"></script>
+	</head>
+	<body>
+		<div class="mleft">
+			<div id="forms">
+				<div id="loginforms">
+					<section>
+						<header>
+							<h1>Login</h1>
+						</header>
+						<input v-model="login_user" placeholder="Username">
+						<input v-model="login_pass" placeholder="Password">
+						<button v-on:click="sub_log">login</button>
+					</section>
+				</div>
+			</div>
+		</div>
+		<div class="mright">
+			<div id="forms">
+				<div id="regforms">
+					<section>
+						<header>
+							<h1>Register</h1>
+						</header>
+						<input v-model="reg_user" placeholder="Username">
+						<input v-model="reg_pass" placeholder="Password">
+						<button v-on:click="sub_reg">submit</button>
+					</section>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
