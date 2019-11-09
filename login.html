@@ -1,38 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
+		<link rel="stylesheet" href="css\main.css">
+		<meta charset="UTF-8">
+		<link rel="shortcut icon" type="image/ico" href="images/favicon.ico" width="16px" height="16px" />
 		<title>Login</title>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="vuejs/form.js"></script>
 	</head>
 	<body>
-		<div class="mleft">
-			<div id="forms">
-				<div id="loginforms">
-					<section>
-						<header>
-							<h1>Login</h1>
-						</header>
-						<input v-model="login_user" placeholder="Username">
-						<input v-model="login_pass" placeholder="Password">
-						<button v-on:click="sub_log">login</button>
-					</section>
+		<div id="big_wrapper">
+			
+			<div class="grid-container-form">
+				<div class="top">
+					<img src="images/logo.svg" width="70px" height="auto">
+				<header>CancerCoffeeCo.</header>
+				<div id="top_menu">
+					<nav>
+						<a href=index.html> Home </a>
+						<a href=login.html> Login </a>
+						<a href=register.html> Register </a>
+						<a href=courses.html> courses </a>
+					</nav>
 				</div>
 			</div>
-		</div>
-		<div class="mright">
-			<div id="forms">
-				<div id="regforms">
-					<section>
-						<header>
-							<h1>Register</h1>
-						</header>
-						<input v-model="reg_user" placeholder="Username">
-						<input v-model="reg_pass" placeholder="Password">
-						<button v-on:click="sub_reg">submit</button>
-					</section>
+			<div class="header">
+				<header id="top_header" class="grid">
+					<h1>Login now! Don't have an account, create one</h1>
+				</header>
+			</div>
+			<div class="mleft">
+				<div id="forms">
+					<div id="loginforms">
+						<section>
+							<header>
+								<h1>Login</h1>
+							</header>
+							<input v-model="login_user" placeholder="Username">
+							<input v-model="login_pass" placeholder="Password">
+							<button v-on:click="sub_log">login</button>
+						</section>
+					</div>
 				</div>
 			</div>
+			<div class="mright">
+				<div id="forms">
+					<div id="regforms">
+						<section>
+							<header>
+								<h1>Register</h1>
+							</header>
+							<input v-model="reg_user" placeholder="Username">
+							<input v-model="reg_pass" placeholder="Password">
+							<button v-on:click="sub_reg">submit</button>
+						</section>
+					</div>
+				</div>
+			</div>
+			<div class=footer>
+				<footer>
+					<p>CancerCoffee Co.</p>
+				</footer>
+			</div>
 		</div>
+		
 	</body>
+</div>
 </html>
