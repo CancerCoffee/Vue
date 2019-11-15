@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css\main.css">
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" width="16px" height="16px" />
+        <title>index</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="vuejs/courses.js"></script>
+    </head>
+    <body>
+        <div id="vue1">
+            <p>there in total this many courses {{courses.length}} . Among these, </p>
+            <p>There are math {{mathCourses.length}} courses</p>
+            <p>There are courses in Hendon:</p>
+            <div v-for="course in mathCourses"> <!--style="display: inline-block; border-style: solid; width: 180px"-->
+                <!--<li>topic: {{ course.topic }}</li>
+                <li>location: {{ course.location }}</li>
+                <li>price: {{ course.price }}</li> -->
+                <li v-for="(value, property) in course">
+                    {{property}}: {{value}}
+                </li>
+            </div>
+                <div v-for="course in filteredCourse" > <!--style="display: inline-block; border-style: solid; width: 180px"-->
+                    <li v-for="(value, property) in course">
+                       {{property}}: {{value}} 
+                    </li>
+                </div>
+                <input type="text" v-model="search">
+        </div>
+    </body>
+</html>
