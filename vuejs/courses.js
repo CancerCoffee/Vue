@@ -1,44 +1,44 @@
 window.addEventListener('load', function() {
 
 
-new Vue({
-                el: '#vue1',
-                data: {
-                    search: '',
-                    courses: [
-                                { 'topic': 'math', 'location': 'hendon', 'price': 100 },
-                                { 'topic': 'math', 'location': 'colindale', 'price': 80 },
-                                { 'topic': 'math', 'location': 'brent cross', 'price': 90 },
-                                { 'topic': 'math', 'location': 'golders green', 'price': 120 },
-                                { 'topic': 'english', 'location': 'hendon', 'price': 110 },
-                                { 'topic': 'english', 'location': 'colindale', 'price': 90 },
-                                { 'topic': 'english', 'location': 'brent cross', 'price': 90 },
-                                { 'topic': 'english', 'location': 'golders green', 'price': 130 },
-                                { 'topic': 'piano', 'location': 'hendon', 'price': 120 },
-                                { 'topic': 'piano', 'location': 'golders green', 'price': 140 } 
-                            ],
-                },
-                computed: {
-                    mathCourses: function() {
-                        return this.courses.filter(function (course) {
-                            return course.topic === 'math';
-                        });
+    new Vue({
+        el: '#vue1',
+        data: {
 
-                    },
-                    hendonCourses: function(){
-                        return this.courses.filter(function (course){
-                            return course.location === 'hendon';
-                        });
-                    },
-                    filteredCourse(){
-                        if (this.search != '') {
-                        return this.courses.filter(course => {
-                            return course.topic.indexOf(this.search.toLowerCase()) >= 0
-                            || course.location.indexOf(this.search.toLowerCase()) >= 0
-                        })}
-                        else {return;};
+            courses: JSON.parse(localStorage['courses']),
+            search: '',
+            topic: [],
+            location: [],
+            sortBy: 'topic',
+            filter: [],
+        },
+        computed: {
+            uniqueCourse: function() {
+                            var removedDupeCourse = [];
+                            for (var i = 0; i < this.courses.length; i++) {
+                                if (removedDupeCourse.indexOf(this.courses[i].location) === -1) {
+                                    removedDupeCourse.push(this.courses[i].location)
+                                }
+                            }
+                            return removedDupeCourse;
+            },
+            filteredCourse: function() {
+                    return this.courses.filter((item) => {
+                    return (this.search.length === 0 || item.topic.includes(this.search)) &&
+                           (this.location.length === 0 || this.location.includes(item.location))
+                }).sort((a, b) => {
+                    if (this.sortBy == 'low'){
+                         return a.price - b.price
                     }
-                }
+                    else if (this.sortBy == 'high') {
+                        return b.price - a.price
+                    }
+                    else {
+                    return a[this.sortBy].toString().localeCompare(b[this.sortBy].toString())
+                        }
+                })
+            }
+        }
 
-            });
+    });
 });

@@ -11,6 +11,7 @@
     <body>
         <div id="big_wrapper">
             <div id="vue1">
+                
                 <div class="grid-container-course">
                     <div class="top">
                         <img src="images/logo.svg" width="70px" height="auto">
@@ -31,13 +32,15 @@
                 </div>
                 <div class="mid">
                     <div style="float: left;">
-                        <div v-for="course in uniqueCourse">
-                            {{course}}  <input type="checkbox" v-model="location" v-bind:value="course"/>
+                        <div v-for="course in mathCourses">
+                            {{course.location}}  <input type="checkbox" v-model="location" v-bind:value="course.location"/>
                         </div>
                         <strong>Sort By:</strong>
                         <select v-model="sortBy">
                             <option value="topic">topic</option>
                             <option value="location">location</option>
+                        </select>
+                        <select v-model="price">
                             <option value="low">low to high</option>
                             <option value="high">high to low</option>
                         </select>

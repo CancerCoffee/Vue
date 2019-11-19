@@ -21,6 +21,38 @@ html{
 
 }
 
+input{
+  background: #f765b8;
+  border: 1px;
+  border-radius: 3px;
+  color: white;
+  padding: 20px;
+  margin: 50px auto 0px auto;
+  width: 50%;
+}
+
+button {
+  background: #f765b8;
+  border: 1px solid #f765b8;
+  border-radius: 5px;
+  padding: .5%;
+  margin: .5%;
+  float: center;
+  color: white;
+  width: 50%;
+}
+
+button:hover{
+  background: #f765b8;
+
+}
+
+
+h1 {
+  color: white;
+  font: bold 25px Tahoma
+}
+
 
 /* global end*/
 
@@ -43,6 +75,17 @@ html{
   font: bold 25px Tahoma;
   color: white;
 }
+
+#render{
+  display: inline-block; 
+  width: 180px;  
+  border-radius: 5px; 
+  background: #f765b8;
+  padding: 20px;
+  margin: 2px;
+}
+
+
 /* navigation top menu - end */
 
 /**/
@@ -77,41 +120,37 @@ html{
 
 
 
-#forms input{
-  background: #f765b8;
-  border: 1px;
-  border-radius: 3px;
-  color: white;
-  padding: 20px;
-  margin: 50px auto 0px auto;
-  width: 50%;
-}
 
-#forms button {
-  background: #f765b8;
-  border: 1px solid #f765b8;
-  border-radius: 5px;
-  padding: .5%;
-  margin: .5%;
-  float: center;
-  color: white;
-  width: 50%;
-}
-
-#forms button:hover{
-  background: #f765b8;
-
-}
-
-
-#forms h1 {
-  color: white;
-  font: bold 25px Tahoma
-}
 
 /* login form - end */
 
-/* form - end */
+/* form */
+
+.grid-container-course {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  grid-template-areas:
+  'nav '
+  'top '
+  'mid '
+  'bottom ';
+  grid-gap: 10px;
+  padding: 20px;
+}
+
+/* grid box style - course */
+.grid-container-course > div {
+  background:#f98dc9;
+  text-align: center;
+  padding: 20px;
+  border-radius: 5px;
+  font: bold 14px Tahoma;
+  color: white;
+}
+
+/* course - end */
+
 
 /**/
 
