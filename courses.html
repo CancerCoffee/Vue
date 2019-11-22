@@ -7,22 +7,28 @@
         <title>Courses</title>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="vuejs/courses.js"></script>
+        <script src="vuejs/logged.js"></script>
     </head>
     <body>
         <div id="big_wrapper">
-            <div id="vue1">
-                <div class="grid-container-course">
-                    <div class="top">
-                        <img src="images/logo.svg" width="70px" height="auto">
-                    <header>CancerCoffeeCo.</header>
-                    <div id="top_menu">
-                        <nav>
-                            <a href=index.html> Home </a>
-                            <a href=login.html> Login </a>
-                            <a href=courses.html> Courses </a>
-                        </nav>
+            <div class="grid-container-course">
+                <div class="top">
+                    <img src="images/logo.svg" width="70px" height="auto">
+                <header>CancerCoffeeCo.</header>
+                <div id="top_menu">
+                    <div id="navi">
+                        <a href=index.html> Home </a>
+                        <a href=courses.html> Courses </a>
+                        <a href=login.html v-if="!loggedIn"> Login </a>
+                        <div v-else>
+                            <a v-on:click="loginCheck">logged in as {{loginCheck}}</a>
+                            <a v-on:click="logout"> logout </a>
+                            <a href="admin.html" v-if="admin"> system provider panel </a>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div id="vue1">
                 <div class="header">
                     <header id="top_header" class="grid">
                         <h1>there in total {{courses.length}} courses, of those your results have returned {{filteredCourse.length}} courses</h1>
@@ -31,23 +37,51 @@
                 </div>
                 <div class="mid">
                     <div style="float: left;">
-                        <div v-for="course in uniqueCourse">
+                        <div id="render" v-for="course in uniqueCourse">
                             {{course}}  <input type="checkbox" v-model="location" v-bind:value="course"/>
                         </div>
+                        <br>
+                    <div id="render" v-for="uP in uniqueProvider">
+                            {{uP}}  <input type="checkbox" v-model="sP" v-bind:value="uP"/>
+                        </div>
                         <strong>Sort By:</strong>
-                        <select v-model="sortBy">
+                        <select id="render" v-model="sortBy">
                             <option value="topic">topic</option>
                             <option value="location">location</option>
-                            <option value="low">low to high</option>
-                            <option value="high">high to low</option>
+                            <option value="low">price - low to high</option>
+                            <option value="high">price - high to low</option>
+                            <option value="low1">duration - low to high</option>
+                            <option value="high1">duration - high to low</option>
+                            <option value="low2">time - low to high</option>
+                            <option value="high2">time - high to low</option>
+                            <input type="radio" id="am" value="am" v-model="ampm">
+                            <label for="am">time - am</label>
+                            <input type="radio" id="pm" value="pm" v-model="ampm">
+                            <label for="pm">time - pm</label>
+                            <input type="radio" id="" value="" v-model="ampm">
+                            <label for="">time - both</label>
                         </select>
                     </div>
                     <input type="text" v-model="search" placeholder="type to search">
                     <br></br>
                     <div v-for="course in filteredCourse" >
-                        <li id="render"v-for="(value, property) in course">
-                            {{property}}: {{value}}
-                            <!--{{filteredCourse.length}}-->
+                        <li id="render">
+                            topic: {{course.topic}}
+                        </li>
+                        <li id="render">
+                            location: {{course.location}}
+                        </li>
+                        <li id="render">
+                            price: {{course.price}}
+                        </li>
+                         <li id="render">
+                                duration: {{course.duration}} min
+                            </li>
+                            <li id="render">
+                                time: {{course.time}} {{course.ampm}}
+                            </li>
+                        <li id="render">
+                            Service Provider: {{course.serviceProvider}}
                         </li>
                     </div>
                 </div>

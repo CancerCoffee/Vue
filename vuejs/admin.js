@@ -1,5 +1,7 @@
 window.addEventListener('load', function() {
 
+var courses = [];
+var sP = [];
 
     new Vue({
         el: '#admin',
@@ -7,33 +9,72 @@ window.addEventListener('load', function() {
             topic: '',
             location: '',
             price: '',
-            course: [],
-            courses: JSON.parse(localStorage['courses']),
-
+            time: '',
+            duration: '',
+            admin: true,
+            serviceProvider: sP,
+            selected: 'am',
         },
         methods: {
             submit: function() {
-                this.course.push({
+                courses.push({
                     topic: this.topic,
                     location: this.location,
-                    price: this.price
+                    price: this.price,
+                    time: this.time,
+                    duration: this.duration,
+                    ampm: this.selected,
+                    serviceProvider: sP,
                 })
-                localStorage.setItem('courses', JSON.stringify(this.course));
+                localStorage.setItem('courses', JSON.stringify(courses));
 
                 this.topic = '';
                 this.location = '';
                 this.price = '';
-            }
+                this.time = '';
+                this.duration = '';
+            },
+            removeCourse: function(course) {
+    			var index = courses.findIndex(c => c === course)
+    			courses.splice(index, 1)
+    			localStorage.setItem('courses', JSON.stringify(courses));
+    		},
+    		editCourse: function(course) {
+    			var append = {
+    				topic: this.topic,
+                    location: this.location,
+                    price: this.price,
+                    serviceProvider: sP,};
+    			var index = courses.findIndex(c => c === course)
+    			courses.splice(index, 1, append)
+    			localStorage.setItem('courses', JSON.stringify(courses));
+    		}
         },
         computed: {
+
             coursesOutput: function() {
+            	if (localStorage.getItem('currentAccount') !== null){
             	var check = JSON.parse(localStorage['currentAccount']).admin;
                 if (check == false){
-                    alert('you are not an admin');
+                	this.admin = false;
                 }
                 else{
-                return this.courses;
+                	if (localStorage.getItem('courses') !== null){
+                		courses = JSON.parse(localStorage['courses'])
+                		sP = JSON.parse(localStorage['currentAccount']).username;
+                	}
+                	else {
+                		courses = [];
+                		sP = JSON.parse(localStorage['currentAccount']).username;
+                	}
+                return courses.filter((item) => {
+                	return (item.serviceProvider.includes(sP));
+                })
             }
+        	}
+        	else {
+        		window.location.href = "courses.html"
+        	}
             },
         }
     })

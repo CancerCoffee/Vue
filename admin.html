@@ -7,34 +7,75 @@
         <title>Courses</title>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="vuejs/admin.js"></script>
+        <script src="vuejs/logged.js"></script>
     </head>
     <body>
         <div id="big_wrapper">
-            <div id="admin">
-                <div class="grid-container-course">
-                    <div class="top">
-                        <img src="images/logo.svg" width="70px" height="auto">
-                    <header>CancerCoffeeCo.</header>
-                    <div id="top_menu">
-                        <nav>
+            <div class="grid-container-course">
+                <div class="top">
+                    <img src="images/logo.svg" width="70px" height="auto">
+                <header>CancerCoffeeCo.</header>
+                <div id="top_menu">
+                    <nav>
+                        <div id="navi">
                             <a href=index.html> Home </a>
-                            <a href=login.html> Login </a>
                             <a href=courses.html> Courses </a>
-                        </nav>
+                            <a href=login.html v-if="!loggedIn"> Login </a>
+                            <div v-else>
+                                <a v-on:click="loginCheck">logged in as {{loginCheck}}</a>
+                                <a v-on:click="logout"> logout </a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div id="admin">
+                <div v-if="admin">
+                    <div class="header">
+                        <header id="top_header" class="grid">
+                            <h1>you have {{coursesOutput.length}} courses</h1>
+                            <form>
+                                <input  v-model="topic" placeholder="topic">
+                                <input v-model="location" placeholder="location">
+                                <input v-model="price" placeholder="price">
+                                <input v-model="duration" placeholder="duration (in mins)">
+                                <input v-model="time" placeholder="time (24hr format)">
+                                <input type="radio" id="am" value="am" v-model="selected">
+                                <label for="am">time - am</label>
+                                <input type="radio" id="pm" value="pm" v-model="selected">
+                                <label for="pm">time - pm</label>
+                                <button v-on:click="submit">submit</button>
+                            </form>
+                        </header>
+                    </div>
+                    <div class="mid">
+                        <div v-for="course in coursesOutput" >
+                            <li id="render">
+                                topic: {{course.topic}}
+                            </li>
+                            <li id="render">
+                                location: {{course.location}}
+                            </li>
+                            <li id="render">
+                                price: {{course.price}}
+                            </li>
+                            <li id="render">
+                                duration: {{course.duration}} min
+                            </li>
+                            <li id="render">
+                                time: {{course.time}} {{course.ampm}}
+                            </li>
+                            <li id="render">
+                                <form>
+                                    <button v-on:click="removeCourse(course)">delete</button>
+                                    <button v-on:click="editCourse(course)">edit</button>
+                                </form>
+                            </li>
+                        </div>
                     </div>
                 </div>
-                <div class="header">
-                    <header id="top_header" class="grid">
-                        <h1>there in total {{courses.length}} courses</h1>
-                        <!--<p>Among these there are total of {{Courses.length}} math courses </p>-->
-                    </header>
-                </div>
-                <div class="mid">
-                    <div v-for="course in coursesOutput" >
-                        <li id="render" v-for="(value, property) in course">
-                            {{property}}: {{value}}
-                        </li>
-                    </div>
+                <div v-else>
+                    <p>403, Forbidden</p>
                 </div>
             </div>
             <div class=footer>

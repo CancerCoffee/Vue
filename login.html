@@ -39,6 +39,7 @@
 							<input v-model="login_user" placeholder="Username">
 							<input v-model="login_pass" placeholder="Password" type="password">
 							<button v-on:click="sub_log">login</button>
+							<p>{{ alert }}</p>
 						</section>
 					</div>
 				</div>
@@ -50,7 +51,7 @@
 							<header>
 								<h1>Register</h1>
 							</header>
-							<form>
+							
 							<input minlength="6" v-model="reg_user" placeholder="Username" required>
 							<input v-model="reg_email" placeholder="E-mail" type="email" required>
 							<input v-model="reg_emailC" placeholder="confirm E-mail" type="email" required>
@@ -61,7 +62,8 @@
 							<input type="radio" id="admin" value="admin" v-model="selected">
 							<label for="admin">Service Provider</label>
 							<button v-on:click="sub_reg" type="submit">submit</button>
-							</form>
+							<p>{{ alert }} </p>
+							
 						</section>
 					</div>
 				</div>
