@@ -62,7 +62,7 @@ window.addEventListener('load', function() {
                         this.alert = 'account created';
                     }
                 }
-            }
+        }
         }
     });
     new Vue({
@@ -93,13 +93,13 @@ window.addEventListener('load', function() {
                         username: currentUsername,
                         admin: true
                     }));
-                    window.location.href = "courses.html"
+                    window.location.href = "index.html"
                 } else if (valid) {
                     localStorage.setItem('currentAccount', JSON.stringify({
                         username: currentUsername,
                         admin: false
                     }));
-                    window.location.href = "courses.html"
+                    window.location.href = "index.html"
                 } else {
                     for (var i = 0; i < objlength; i++) {
                         if (this.login_user != accountDetails[i].email) {

@@ -12,7 +12,7 @@ new Vue({
   methods: {
   	logout: function(){
   		localStorage.removeItem("currentAccount");
-  		window.location.href = "courses.html";
+  		window.location.href = "index.html";
   	}
   },
   computed: {

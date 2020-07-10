@@ -73,7 +73,7 @@ var sP = [];
             }
         	}
         	else {
-        		window.location.href = "courses.html"
+        		window.location.href = "index.html"
         	}
             },
         }

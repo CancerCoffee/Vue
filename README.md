@@ -1,2 +1,1 @@
-# Vue
-Y3 project
+https://github.com/CancerCoffee/Vue
