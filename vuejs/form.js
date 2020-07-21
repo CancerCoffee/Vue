@@ -31,6 +31,17 @@ window.addEventListener('load', function() {
                         type: this.selected
                     })
                     localStorage.setItem('loginkeys', JSON.stringify(this.info));
+                    fetch(`http://localhost:3000/activity/users/`, {
+                    method: 'post',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.info)
+                })
+                    .then((response) => response.json())
+                    .then((data) => console.log(data))
+                    .catch((error) => console.log('try again'))
+      
                     this.alert = 'account created';
                 } else {
                     var accountDetails = JSON.parse(localStorage['loginkeys']);
@@ -59,7 +70,20 @@ window.addEventListener('load', function() {
                             type: this.selected
                         })
                         localStorage.setItem('loginkeys', JSON.stringify(this.info));
-                        this.alert = 'account created';
+                        fetch(`http://localhost:3000/activity/users/`, {
+                    method: 'post',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.info)
+                })
+                    .then((response) => response.json())
+                    .then((data) => console.log(data))
+                    .catch((error) => console.log('try again'))
+                    console.log('hi');
+      
+                    alert("You have been registered");
+                    this.alert = 'account created';
                     }
                 }
         }

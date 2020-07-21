@@ -1,6 +1,7 @@
 window.addEventListener('load', function() {
 
 
+
     new Vue({
         el: '#vue1',
         data: {
@@ -14,6 +15,11 @@ window.addEventListener('load', function() {
             ampm: '',
         },
         computed: {
+            getCourses: function(){
+                fetch('http://localhost:3000/activity/lessons/', {mode: 'cors'})
+                    .then((res) => res.json())
+                    .then((data) => localStorage.setItem('courses', JSON.stringify(data)));
+            },
             uniqueCourse: function() {
                             var removedDupeCourse = [];
                             var objlength = []
