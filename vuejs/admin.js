@@ -27,6 +27,24 @@ var sP = [];
                     serviceProvider: sP,
                 })
                 localStorage.setItem('courses', JSON.stringify(courses));
+                fetch(`http://localhost:3000/activity/lessons/`, {
+                    method: 'post',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(({
+                    topic: this.topic,
+                    location: this.location,
+                    price: this.price,
+                    time: this.time,
+                    duration: this.duration,
+                    ampm: this.selected,
+                    serviceProvider: sP,
+                }))
+                })
+                    .then((response) => response.json())
+                    .then((data) => console.log(data))
+                    .catch((error) => console.log('try again'))
 
                 this.topic = '';
                 this.location = '';
