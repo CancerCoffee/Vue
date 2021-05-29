@@ -6,4 +6,4 @@ logins can be pulled from server (method may be invalid)
 courses can be obtained from server (this was working but broke upon adding the login stuff)
 
 
-- this will never be finished. Lol
+- To whom it may concern, due to personal issues this was never finished.
